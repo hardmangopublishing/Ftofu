@@ -1,17 +1,22 @@
-/* F.Tofu – From Hate to Plate */
+/* F.Tofu – Modern Redesign */
 :root {
-  --primary: #1a1a1a;
+  --primary: #0f0f0f;
   --accent: #e85d04;
-  --accent-hover: #d00000;
-  --bg: #faf9f7;
+  --accent-dark: #c44d03;
+  --accent-soft: #fff4eb;
+  --bg: #faf8f5;
   --card: #ffffff;
-  --text: #2d2d2d;
-  --muted: #6b6b6b;
-  --success: #2d6a4f;
-  --border: #e8e6e1;
-  --radius: 12px;
-  --shadow: 0 4px 20px rgba(0,0,0,0.06);
+  --text: #1c1c1c;
+  --muted: #5c5c5c;
+  --border: #ebe6df;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.06);
+  --shadow-hover: 0 12px 40px rgba(0,0,0,0.1);
+  --font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
   margin: 0;
@@ -19,45 +24,50 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  line-height: 1.65;
   font-size: 17px;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--accent-hover);
+  color: var(--accent-dark);
 }
 
 img {
   max-width: 100%;
-  height: auto;
   display: block;
 }
 
 .container {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Header */
+/* ========== HEADER ========== */
 header {
-  background: var(--card);
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 16px 0;
+  padding: 14px 0;
 }
 
 .header-inner {
@@ -67,10 +77,10 @@ header {
 }
 
 .logo {
-  font-size: 1.6rem;
+  font-size: 1.45rem;
   font-weight: 800;
   color: var(--primary);
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
 }
 
 .logo span {
@@ -79,42 +89,52 @@ header {
 
 nav {
   display: flex;
-  gap: 28px;
+  gap: 8px;
   align-items: center;
 }
 
 nav a {
   color: var(--text);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: all 0.15s ease;
 }
 
 nav a:hover {
   color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: var(--accent);
   color: white !important;
-  padding: 12px 28px;
+  padding: 12px 26px;
   border-radius: 50px;
   font-weight: 600;
   font-size: 0.95rem;
   border: none;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(232, 93, 4, 0.25);
 }
 
 .btn:hover {
-  background: var(--accent-hover);
+  background: var(--accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(232, 93, 4, 0.35);
 }
 
 .btn-outline {
   background: transparent;
   border: 2px solid var(--accent);
   color: var(--accent) !important;
+  box-shadow: none;
 }
 
 .btn-outline:hover {
@@ -122,157 +142,211 @@ nav a:hover {
   color: white !important;
 }
 
-/* Hero */
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.88rem;
+}
+
+/* ========== HERO ========== */
 .hero {
-  padding: 80px 0 60px;
+  padding: 90px 0 70px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(232,93,4,0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-size: clamp(2.6rem, 5.5vw, 3.8rem);
   font-weight: 800;
-  line-height: 1.15;
-  margin-bottom: 20px;
+  line-height: 1.12;
+  margin-bottom: 22px;
   color: var(--primary);
-  letter-spacing: -1px;
+  letter-spacing: -1.5px;
+  position: relative;
 }
 
 .hero h1 .highlight {
   color: var(--accent);
+  position: relative;
 }
 
 .hero p.lead {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   color: var(--muted);
-  max-width: 640px;
-  margin: 0 auto 36px;
+  max-width: 580px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  position: relative;
 }
 
 .hero-cta {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
-/* Pain points */
+/* ========== SECTIONS ========== */
 .section {
-  padding: 70px 0;
+  padding: 80px 0;
 }
 
 .section-title {
   text-align: center;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 750;
   margin-bottom: 12px;
   color: var(--primary);
+  letter-spacing: -0.6px;
 }
 
 .section-sub {
   text-align: center;
   color: var(--muted);
-  max-width: 560px;
+  max-width: 520px;
   margin: 0 auto 48px;
+  font-size: 1.05rem;
 }
 
+/* ========== PAIN / FEATURE CARDS ========== */
 .pain-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .pain-card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 28px;
+  padding: 28px 24px;
   box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+}
+
+.pain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #e0d9d0;
 }
 
 .pain-card .icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
+  width: 48px;
+  height: 48px;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
 }
 
 .pain-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 650;
   margin-bottom: 8px;
+  letter-spacing: -0.2px;
 }
 
 .pain-card p {
   color: var(--muted);
   font-size: 0.95rem;
+  line-height: 1.55;
 }
 
-/* Promise */
+/* ========== PROMISE BANNER ========== */
 .promise {
   background: var(--primary);
   color: white;
-  padding: 70px 0;
+  padding: 72px 0;
   text-align: center;
+  position: relative;
 }
 
 .promise h2 {
-  font-size: 2.1rem;
+  font-size: 2rem;
+  font-weight: 700;
   margin-bottom: 16px;
+  letter-spacing: -0.5px;
 }
 
 .promise p {
   font-size: 1.15rem;
-  opacity: 0.9;
-  max-width: 600px;
+  opacity: 0.88;
+  max-width: 560px;
   margin: 0 auto 32px;
+  line-height: 1.6;
 }
 
-/* Techniques */
+/* ========== TECHNIQUE CARDS ========== */
 .tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .tech-card {
   background: var(--card);
   border-radius: var(--radius);
-  overflow: hidden;
   border: 1px solid var(--border);
+  padding: 28px 24px;
   box-shadow: var(--shadow);
-  transition: transform 0.2s;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .tech-card:hover {
   transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
 }
 
 .tech-card .num {
+  width: 40px;
+  height: 40px;
   background: var(--accent);
   color: white;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  margin: 24px 24px 0;
+  font-size: 1.05rem;
+  margin-bottom: 18px;
 }
 
 .tech-card h3 {
-  padding: 16px 24px 8px;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 650;
+  margin-bottom: 8px;
+  letter-spacing: -0.2px;
 }
 
 .tech-card p {
-  padding: 0 24px 24px;
   color: var(--muted);
   font-size: 0.95rem;
+  line-height: 1.55;
 }
 
-/* Recipes */
+/* ========== RECIPE CARDS ========== */
 .recipe-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
+  gap: 24px;
 }
 
 .recipe-card {
@@ -281,69 +355,92 @@ nav a:hover {
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
 }
 
 .recipe-card .img-placeholder {
-  height: 180px;
-  background: linear-gradient(135deg, #ffedd5, #fed7aa);
+  height: 160px;
+  background: linear-gradient(135deg, #fff0e0 0%, #ffd4a8 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 3.2rem;
+  position: relative;
+}
+
+.recipe-card .img-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.03), transparent);
 }
 
 .recipe-card .content {
-  padding: 22px;
+  padding: 22px 24px 26px;
 }
 
 .recipe-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  font-weight: 650;
   margin-bottom: 8px;
+  letter-spacing: -0.2px;
 }
 
 .recipe-card p {
   color: var(--muted);
-  font-size: 0.9rem;
-  margin-bottom: 16px;
+  font-size: 0.92rem;
+  margin-bottom: 14px;
+  line-height: 1.5;
 }
 
 .tag {
   display: inline-block;
-  background: #fff3e6;
+  background: var(--accent-soft);
   color: var(--accent);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
   margin-right: 6px;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
 }
 
-/* Lead magnet */
+/* ========== LEAD MAGNET ========== */
 .lead {
-  background: linear-gradient(135deg, #fff7ed, #ffedd5);
-  border-radius: var(--radius);
-  padding: 48px;
+  background: linear-gradient(145deg, #fff8f0 0%, #ffedd5 100%);
+  border-radius: 20px;
+  padding: 52px 40px;
   text-align: center;
-  border: 1px solid #fed7aa;
+  border: 1px solid #ffd9b0;
+  box-shadow: var(--shadow);
 }
 
 .lead h2 {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
+  font-weight: 700;
   margin-bottom: 12px;
+  letter-spacing: -0.4px;
 }
 
 .lead p {
   color: var(--muted);
   margin-bottom: 28px;
-  max-width: 480px;
+  max-width: 440px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1.05rem;
 }
 
 .lead-form {
   display: flex;
   gap: 12px;
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
   flex-wrap: wrap;
   justify-content: center;
@@ -352,121 +449,169 @@ nav a:hover {
 .lead-form input {
   flex: 1;
   min-width: 220px;
-  padding: 14px 18px;
-  border: 1px solid var(--border);
+  padding: 14px 20px;
+  border: 1.5px solid var(--border);
   border-radius: 50px;
   font-size: 1rem;
   outline: none;
+  background: white;
+  transition: border-color 0.2s;
+  font-family: inherit;
 }
 
 .lead-form input:focus {
   border-color: var(--accent);
 }
 
-/* Footer */
+/* ========== CONTENT BLOCKS (inner pages) ========== */
+.page-hero {
+  padding: 60px 0 30px;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.8px;
+}
+
+.page-hero p {
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+.content-block {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+
+.content-block h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--primary);
+  letter-spacing: -0.3px;
+}
+
+.content-block ol, .content-block ul {
+  padding-left: 22px;
+  margin: 14px 0;
+}
+
+.content-block li {
+  margin-bottom: 9px;
+  line-height: 1.55;
+}
+
+.tool-box {
+  background: var(--accent-soft);
+  border: 1px solid #ffd9b0;
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-top: 22px;
+}
+
+.tool-box strong {
+  color: var(--accent-dark);
+}
+
+/* ========== FOOTER ========== */
 footer {
   background: var(--primary);
-  color: #ccc;
-  padding: 50px 0 30px;
-  margin-top: 80px;
+  color: #b0b0b0;
+  padding: 56px 0 28px;
+  margin-top: 60px;
 }
 
 .footer-inner {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 36px;
 }
 
 .footer-brand .logo {
   color: white;
   margin-bottom: 12px;
+  display: inline-block;
 }
 
 .footer-brand p {
   font-size: 0.9rem;
-  max-width: 280px;
+  max-width: 260px;
+  line-height: 1.5;
 }
 
 .footer-links h4 {
   color: white;
   margin-bottom: 14px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
 .footer-links a {
   display: block;
-  color: #aaa;
-  margin-bottom: 8px;
+  color: #999;
+  margin-bottom: 9px;
   font-size: 0.9rem;
+  transition: color 0.15s;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
 }
 
 .footer-bottom {
-  border-top: 1px solid #333;
+  border-top: 1px solid #2a2a2a;
   margin-top: 40px;
-  padding-top: 24px;
+  padding-top: 22px;
   text-align: center;
-  font-size: 0.85rem;
-  color: #777;
+  font-size: 0.82rem;
+  color: #666;
 }
 
-/* Page specific */
-.page-hero {
-  padding: 50px 0 30px;
-  text-align: center;
-}
-
-.page-hero h1 {
-  font-size: 2.6rem;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.page-hero p {
-  color: var(--muted);
-  max-width: 560px;
-  margin: 0 auto;
-}
-
-.content-block {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 36px;
-  border: 1px solid var(--border);
-  margin-bottom: 28px;
-  box-shadow: var(--shadow);
-}
-
-.content-block h2 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
-  color: var(--primary);
-}
-
-.content-block ol, .content-block ul {
-  padding-left: 22px;
-  margin: 16px 0;
-}
-
-.content-block li {
-  margin-bottom: 10px;
-}
-
-/* Responsive */
-@media (max-width: 700px) {
-  nav {
+/* ========== RESPONSIVE ========== */
+@media (max-width: 720px) {
+  nav a:not(.btn) {
     display: none;
   }
+  
   .hero {
-    padding: 50px 0 40px;
+    padding: 60px 0 50px;
   }
+  
+  .hero h1 {
+    font-size: 2.3rem;
+  }
+  
+  .section {
+    padding: 60px 0;
+  }
+  
   .lead {
-    padding: 32px 24px;
+    padding: 36px 24px;
   }
+  
   .lead-form {
     flex-direction: column;
   }
+  
   .lead-form input {
     min-width: 100%;
+  }
+  
+  .content-block {
+    padding: 28px 22px;
+  }
+  
+  .page-hero h1 {
+    font-size: 2rem;
   }
 }
